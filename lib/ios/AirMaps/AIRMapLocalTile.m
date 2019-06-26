@@ -13,6 +13,7 @@
 @implementation AIRMapLocalTile {
     BOOL _pathTemplateSet;
     BOOL _tileSizeSet;
+    BOOL _flipYSet;
 }
 
 
@@ -28,6 +29,18 @@
     _tileSizeSet = YES;
     [self createTileOverlayAndRendererIfPossible];
     [self update];
+}
+
+- (void)setFlipY:(BOOL)flipY
+{
+    _flipY = flipY;
+    _tileSizeSet = YES;
+    if (self.tileOverlay){
+        self.tileOverlay.geometryFlipped = _flipY;
+        
+        [self createTileOverlayAndRendererIfPossible];
+        [self update];
+    }
 }
 
 - (void) createTileOverlayAndRendererIfPossible

@@ -53,4 +53,9 @@ public class AirMapLocalTileManager extends ViewGroupManager<AirMapLocalTile> {
         view.setZIndex(zIndex);
     }
 
+    @ReactProp(name = "flipY", defaultBoolean = false)
+    public void setFlipY(AirMapUrlTile view, boolean flipY) {
+        view.setFlipY(flipY);
+    }
+
 }

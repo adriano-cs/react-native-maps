@@ -213,6 +213,11 @@ import { LocalTile } from 'react-native-maps';
     * The size of provided local tiles (usually 256 or 512).
     */
    tileSize={256}
+   /**
+     * flipY allows tiles with inverted y coordinates (origin at bottom left of map)
+     * to be used. Its default value is false.
+     */
+    flipY={false}
   />
 </MapView>
 ```

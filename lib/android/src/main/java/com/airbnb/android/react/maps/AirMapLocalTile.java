@@ -72,6 +72,11 @@ public class AirMapLocalTile extends AirMapFeature {
         }
 
         private String getTileFilename(int x, int y, int zoom) {
+
+            if (AirMapLocalTile.this.flipY == true) {
+                y = (1 << zoom) - y - 1;
+            }
+
             String s = this.pathTemplate
                     .replace("{x}", Integer.toString(x))
                     .replace("{y}", Integer.toString(y))
@@ -87,9 +92,17 @@ public class AirMapLocalTile extends AirMapFeature {
     private String pathTemplate;
     private float tileSize;
     private float zIndex;
+    private boolean flipY;
 
     public AirMapLocalTile(Context context) {
         super(context);
+    }
+
+    public void setFlipY(boolean flipY) {
+        this.flipY = flipY;
+        if (tileOverlay != null) {
+            tileOverlay.clearTileCache();
+        }
     }
 
     public void setPathTemplate(String pathTemplate) {
